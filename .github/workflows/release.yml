@@ -1,0 +1,59 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            target: x86_64-unknown-linux-gnu
+            archive: ai-media-provenance-checker-linux-x86_64
+          - os: macos-14
+            target: aarch64-apple-darwin
+            archive: ai-media-provenance-checker-macos-aarch64
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+      - uses: Swatinem/rust-cache@v2
+      - name: Build release binary
+        run: cargo build --locked --release --target ${{ matrix.target }}
+      - name: Package
+        shell: bash
+        run: |
+          mkdir -p package
+          cp target/${{ matrix.target }}/release/ai-media-provenance-checker package/ai-media-provenance-checker
+          cp LICENSE README.md package/
+          tar -C package -czf ${{ matrix.archive }}.tar.gz .
+          shasum -a 256 ${{ matrix.archive }}.tar.gz > ${{ matrix.archive }}.tar.gz.sha256
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.archive }}
+          path: |
+            ${{ matrix.archive }}.tar.gz
+            ${{ matrix.archive }}.tar.gz.sha256
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: release-assets
+          merge-multiple: true
+      - name: Publish GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" release-assets/* --generate-notes --verify-tag
