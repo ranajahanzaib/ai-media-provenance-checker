@@ -36,7 +36,7 @@ jobs:
           cp LICENSE README.md package/
           tar -C package -czf ${{ matrix.archive }}.tar.gz .
           shasum -a 256 ${{ matrix.archive }}.tar.gz > ${{ matrix.archive }}.tar.gz.sha256
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: ${{ matrix.archive }}
           path: |
