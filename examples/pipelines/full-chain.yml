@@ -1,0 +1,25 @@
+version: 1
+name: website-image-processing
+input:
+  expected_format: png
+steps:
+  - id: resized
+    type: resize
+    width: 1200
+    height: 800
+    filter: lanczos3
+    format: png
+  - id: thumbnail
+    type: crop
+    x: 100
+    y: 100
+    width: 600
+    height: 400
+    format: jpeg
+    quality: 82
+  - id: social-compress
+    type: compress
+    quality: 74
+  - id: png-derivative
+    type: convert
+    format: png

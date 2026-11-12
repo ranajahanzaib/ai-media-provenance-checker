@@ -1,0 +1,9 @@
+version: 1
+requirements:
+  require_output_credentials: true
+  require_valid_integrity: true
+  require_parent_link: true
+  require_transformation_action: true
+  require_trusted_signer: false
+behavior:
+  fail_on_unverifiable: true

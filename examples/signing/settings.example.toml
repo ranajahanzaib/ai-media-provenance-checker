@@ -1,0 +1,6 @@
+# Template for local signing. The SDK expects PEM contents, not filesystem paths.
+# Put actual credentials in a protected file outside the repository.
+[signer.local]
+alg = "ps256"
+sign_cert = "<PEM certificate contents>"
+private_key = "<PEM private key contents>"
