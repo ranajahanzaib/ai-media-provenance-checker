@@ -1,0 +1,160 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ai-media-provenance-checker:schema:run:1.0",
+  "title": "AI Media Provenance Checker run report 1.0",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "mode",
+    "pipeline_name",
+    "source",
+    "artifacts",
+    "findings",
+    "policy"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "mode": { "enum": ["raw", "reissue", "compare"] },
+    "pipeline_name": { "type": "string" },
+    "source": { "$ref": "#/$defs/inspection" },
+    "artifacts": { "type": "array", "items": { "$ref": "#/$defs/artifact" } },
+    "findings": { "type": "array", "items": { "$ref": "#/$defs/finding" } },
+    "policy": {
+      "oneOf": [{ "$ref": "#/$defs/policyResult" }, { "type": "null" }]
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "inspection": {
+      "type": "object",
+      "required": [
+        "path",
+        "format",
+        "width",
+        "height",
+        "bytes",
+        "sha256",
+        "credentials",
+        "integrity",
+        "trust",
+        "active_manifest",
+        "manifest_id",
+        "claim_generator",
+        "actions",
+        "ingredients",
+        "ingredient_evidence",
+        "validation"
+      ],
+      "properties": {
+        "path": { "type": "string" },
+        "format": { "type": "string" },
+        "width": { "type": "integer", "minimum": 0 },
+        "height": { "type": "integer", "minimum": 0 },
+        "bytes": { "type": "integer", "minimum": 0 },
+        "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "credentials": {
+          "enum": ["present", "absent", "unreadable", "unsupported"]
+        },
+        "integrity": { "enum": ["valid", "invalid", "unknown"] },
+        "trust": {
+          "enum": ["trusted", "untrusted", "not_evaluated", "unknown"]
+        },
+        "active_manifest": { "type": ["string", "null"] },
+        "manifest_id": { "type": ["string", "null"] },
+        "claim_generator": { "type": ["string", "null"] },
+        "actions": { "type": "array", "items": { "type": "string" } },
+        "ingredients": { "type": "integer", "minimum": 0 },
+        "ingredient_evidence": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/ingredient" }
+        },
+        "validation": {}
+      },
+      "additionalProperties": false
+    },
+    "ingredient": {
+      "type": "object",
+      "required": ["title", "relationship", "active_manifest", "validation"],
+      "properties": {
+        "title": { "type": ["string", "null"] },
+        "relationship": { "type": "string" },
+        "active_manifest": { "type": ["string", "null"] },
+        "validation": { "type": ["string", "null"] }
+      },
+      "additionalProperties": false
+    },
+    "artifact": {
+      "type": "object",
+      "required": [
+        "branch",
+        "step_id",
+        "operation",
+        "input_sha256",
+        "transform",
+        "parent_link",
+        "inspection"
+      ],
+      "properties": {
+        "branch": { "enum": ["raw", "reissued"] },
+        "step_id": { "type": "string" },
+        "operation": { "type": "string" },
+        "input_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "transform": { "$ref": "#/$defs/transform" },
+        "parent_link": {
+          "enum": [
+            "linked",
+            "missing_parent",
+            "wrong_parent",
+            "unverifiable",
+            "preserved"
+          ]
+        },
+        "inspection": { "$ref": "#/$defs/inspection" }
+      },
+      "additionalProperties": false
+    },
+    "transform": {
+      "type": "object",
+      "required": ["parameters", "input_bytes", "output_bytes"],
+      "properties": {
+        "parameters": {},
+        "input_bytes": { "type": "integer", "minimum": 0 },
+        "output_bytes": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "finding": {
+      "type": "object",
+      "required": [
+        "code",
+        "severity",
+        "message",
+        "artifact",
+        "expected",
+        "actual",
+        "remediation",
+        "expected_negative"
+      ],
+      "properties": {
+        "code": { "type": "string" },
+        "severity": { "enum": ["info", "warning", "error"] },
+        "message": { "type": "string" },
+        "artifact": { "type": ["string", "null"] },
+        "expected": { "type": ["string", "null"] },
+        "actual": { "type": ["string", "null"] },
+        "remediation": { "type": ["string", "null"] },
+        "expected_negative": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+    "policyResult": {
+      "type": "object",
+      "required": ["passed", "violations"],
+      "properties": {
+        "passed": { "type": "boolean" },
+        "violations": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    }
+  }
+}
