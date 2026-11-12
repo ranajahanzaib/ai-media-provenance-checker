@@ -36,7 +36,7 @@ jobs:
       - name: Run signed end-to-end demo
         run: ./scripts/demo.sh "$RUNNER_TEMP/ai-media-provenance-checker-demo"
       - name: Preserve demo reports
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ai-media-provenance-checker-demo-${{ matrix.os }}
           path: ${{ runner.temp }}/ai-media-provenance-checker-demo/report.*
