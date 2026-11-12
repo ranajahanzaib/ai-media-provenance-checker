@@ -1,19 +1,23 @@
 ---
 name: Feature request
-about: Suggest an idea for this project
-title: ''
+about: Propose an AI Media Provenance Checker capability
+title: ""
 labels: enhancement
-assignees: ''
+assignees: ""
 ---
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+## Use case
 
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
+Describe the image-processing or provenance workflow and the problem it creates.
 
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
+## Desired behavior
 
-**Additional context**
-Add any other context or screenshots about the feature request here.
+Explain what command, report, policy, or transformation support would help.
+
+## Alternatives
+
+Describe any current workaround or alternative you have considered.
+
+## Additional context
+
+Include sample configuration or sanitized report data when useful. Do not attach private keys, credentials, or confidential media.

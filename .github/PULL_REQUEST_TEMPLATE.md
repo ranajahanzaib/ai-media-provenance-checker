@@ -1,10 +1,13 @@
-Fixes #<issue_number_goes_here>
+## Summary
 
-> It's a good idea to open an issue first for discussion.
+Describe the change and the user-visible behavior it affects.
 
-**Description**
-A brief summary of what this PR does and why.
+## Verification
 
-- [ ] Tests pass
-- [ ] README updated if needed
-- [ ] No breaking changes (or described below)
+- [ ] Formatting and Clippy pass
+- [ ] Relevant unit and integration tests pass
+- [ ] Documentation is updated where behavior or output changed
+
+## Compatibility and security
+
+Describe any report-format changes, signing behavior changes, or security implications. Confirm that no production credentials or confidential media are included.

@@ -1,26 +1,31 @@
 ---
 name: Bug report
-about: Create a report to help us improve
-title: ''
+about: Report an AI Media Provenance Checker defect
+title: ""
 labels: bug
-assignees: ''
+assignees: ""
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+## What happened?
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. See error
+Include the command and arguments, then describe the unexpected result. Redact local paths or metadata that should not be public.
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+## How to reproduce
 
-**Environment**
-- OS: [e.g. macOS 26.4.1, Windows 11, Ubuntu 24.04.4]
-- Version: [e.g. 1.0.0]
+1. Provide a small input image or pipeline configuration that can be shared safely.
+2. Run the command.
+3. Include the error or relevant report fields.
 
-**Additional context**
-Add any other context or screenshots here.
+## Expected result
+
+Describe what AI Media Provenance Checker should have reported or produced.
+
+## Environment
+
+- OS and architecture:
+- AI Media Provenance Checker version:
+- Rust version, if built from source:
+
+## Additional context
+
+Do not attach private signing keys, production credentials, or confidential media. A sanitized JSON report is usually sufficient.
