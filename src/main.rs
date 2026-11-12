@@ -347,9 +347,7 @@ fn inspect(path: &Path) -> Result<Inspection> {
         bail!("unsupported image format {format:?}; only JPEG and PNG are supported")
     }
     let image = decode_image(&bytes)?;
-    let mut hash = Sha256::new();
-    hash.update(&bytes);
-    let sha256 = format!("{:x}", hash.finalize());
+    let sha256 = sha256_hex(&bytes);
     let mime = match format {
         ImageFormat::Jpeg => "image/jpeg",
         ImageFormat::Png => "image/png",
@@ -884,9 +882,15 @@ fn canonical_regular_file(path: &Path) -> Result<PathBuf> {
     Ok(fs::canonicalize(path)?)
 }
 fn sha256_hex(bytes: &[u8]) -> String {
+    use std::fmt::Write;
     let mut h = Sha256::new();
     h.update(bytes);
-    format!("{:x}", h.finalize())
+    let digest = h.finalize();
+    let mut s = String::with_capacity(digest.len() * 2);
+    for b in digest {
+        let _ = write!(s, "{b:02x}");
+    }
+    s
 }
 fn tamper_jpeg_content_binding(bytes: &mut [u8]) -> Result<()> {
     if bytes.get(0..2) != Some(&[0xff, 0xd8]) {
