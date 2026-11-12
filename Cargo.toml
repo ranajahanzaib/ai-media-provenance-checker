@@ -13,7 +13,7 @@ exclude = ["PLAN.md"]
 
 [dependencies]
 anyhow = "1"
-c2pa = { version = "=0.91.7", features = ["file_io"] }
+c2pa = { version = "=0.91.11", features = ["file_io"] }
 clap = { version = "4", features = ["derive"] }
 image = { version = "0.25", default-features = false, features = ["jpeg", "png"] }
 serde = { version = "1", features = ["derive"] }
