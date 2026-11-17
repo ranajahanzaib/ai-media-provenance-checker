@@ -375,9 +375,9 @@ checksum = "fc652a48c352aef3ea3aed32080501cf3ef6ed5da78602a020c991775b0aff04"
 
 [[package]]
 name = "c2pa"
-version = "0.91.11"
+version = "0.92.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f8e2a752d002206ccd431a9fe22cdc1205023d316c118dd60c4bf568cd493dea"
+checksum = "4caaefa6ebf384355a545ce1e2e7018c3db53bde513a0ee120a5170762b8c5af"
 dependencies = [
  "asn1-rs",
  "async-generic",
@@ -393,7 +393,6 @@ dependencies = [
  "c2pa_raw_crypto",
  "chrono",
  "console_log",
- "const-hex",
  "coset",
  "der 0.8.3",
  "ed25519-dalek",
@@ -436,7 +435,6 @@ dependencies = [
  "serde-transcode",
  "serde-wasm-bindgen",
  "serde_bytes",
- "serde_derive",
  "serde_json",
  "serde_with",
  "sha1",
