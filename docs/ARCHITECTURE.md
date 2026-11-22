@@ -18,4 +18,4 @@ flowchart LR
 
 In compare mode each branch starts from the same source bytes. Every artifact records its input hash, operation parameters, output inspection, and parent-link assessment. `verify` reopens the source and outputs, checks hashes, re-evaluates parent relationships, and optionally applies a policy again. Filesystem outputs use exclusive creation via a temporary file and hard link. Inspection retains SDK validation JSON as evidence.
 
-The pinned C2PA SDK is 0.91.7. AI Media Provenance Checker uses its context-based Reader/Builder APIs and standard `parentOf` ingredients and action assertions. It does not resolve arbitrary remote references or claim publicly trusted identity based on a successful local signature.
+The pinned C2PA SDK is 0.92.1. AI Media Provenance Checker uses its context-based Reader/Builder APIs and standard `parentOf` ingredients and action assertions. It does not resolve arbitrary remote references or claim publicly trusted identity based on a successful local signature.

@@ -322,8 +322,9 @@ fn main() -> Result<()> {
                 },
             );
             println!(
-                "AI Media Provenance Checker {}\nRust: {rustc}\nC2PA SDK: 0.91.7\nImage codecs: JPEG, PNG\nSigning config: {signing_status}\nTest signing: explicit --test-signing only\nGraphviz: {}",
+                "AI Media Provenance Checker {}\nRust: {rustc}\nC2PA SDK: {}\nImage codecs: JPEG, PNG\nSigning config: {signing_status}\nTest signing: explicit --test-signing only\nGraphviz: {}",
                 env!("CARGO_PKG_VERSION"),
+                c2pa::VERSION,
                 if std::process::Command::new("dot").arg("-V").output().is_ok() {
                     "available (DOT export can be rendered externally)"
                 } else {

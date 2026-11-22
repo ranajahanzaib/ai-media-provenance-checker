@@ -158,7 +158,7 @@ fn doctor_and_help_are_usable_without_signing_secrets() {
     let doctor = cli().arg("doctor").output().unwrap();
     assert!(doctor.status.success());
     let output = String::from_utf8_lossy(&doctor.stdout);
-    assert!(output.contains("C2PA SDK: 0.91.7"));
+    assert!(output.contains(&format!("C2PA SDK: {}", c2pa::VERSION)));
     assert!(output.contains("Image codecs: JPEG, PNG"));
     assert!(!output.contains("PRIVATE KEY"));
 }
