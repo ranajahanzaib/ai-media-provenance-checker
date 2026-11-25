@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use AI Media Provenance Checker in research or teaching, please cite this software."
+title: "AI Media Provenance Checker"
+version: 0.1.0
+authors:
+  - family-names: Rana
+    given-names: Jahanzaib
+    orcid: "https://orcid.org/0009-0006-7085-0440"
+repository-code: "https://github.com/ranajahanzaib/ai-media-provenance-checker"
+license: MIT
+abstract: "AI Media Provenance Checker is a Rust CLI and CI verification tool for testing whether embedded C2PA Content Credentials survive declared image-processing workflows."
+keywords:
+  - c2pa
+  - provenance
+  - content-credentials
+  - image-processing
+  - rust
